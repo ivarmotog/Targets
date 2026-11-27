@@ -9,12 +9,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.nio.file.Path;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 import org.owasp.webgoat.WithWebGoatUser;
 import org.owasp.webgoat.container.plugins.LessonTest;
 import org.springframework.http.MediaType;
@@ -23,8 +21,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @WithWebGoatUser
 class ContentTypeAssignmentTest extends LessonTest {
-
-  @TempDir Path tempDir;
 
   @BeforeEach
   public void setup() {
@@ -53,7 +49,9 @@ class ContentTypeAssignmentTest extends LessonTest {
         .perform(
             MockMvcRequestBuilders.post("/xxe/content-type")
                 .contentType(MediaType.APPLICATION_XML)
-                .content(XXETestPayload.readKnownFile(tempDir)))
+                .content(
+                    "<?xml version=\"1.0\" standalone=\"yes\" ?><!DOCTYPE user [<!ENTITY root"
+                        + " SYSTEM \"file:///\"> ]><comment><text>&root;</text></comment>"))
         .andExpect(status().isOk())
         .andExpect(
             jsonPath("$.feedback", CoreMatchers.is(messages.getMessage("assignment.solved"))));

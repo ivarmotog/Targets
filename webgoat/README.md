@@ -93,11 +93,7 @@ If for some reason you want to run WebGoat on a different port, you can do so by
 java -jar webgoat-2023.8.jar --webgoat.port=8001 --webwolf.port=8002
 ```
 
-In the combined JAR, `--server.port` is an alias for `--webgoat.port`. Use `--webwolf.port` to set
-WebWolf's port separately.
-
-For the available settings, see the [WebGoat properties](src/main/resources/application-webgoat.properties)
-and [WebWolf properties](src/main/resources/application-webwolf.properties).
+For a full overview of all the parameters you can use, please check the [WebGoat properties file](webgoat-container/src/main/resources/application-{webgoat, webwolf}.properties).
 
 ## 4. Run from the sources
 

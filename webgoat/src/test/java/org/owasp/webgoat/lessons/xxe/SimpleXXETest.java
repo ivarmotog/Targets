@@ -7,11 +7,9 @@ package org.owasp.webgoat.lessons.xxe;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.nio.file.Path;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 import org.owasp.webgoat.WithWebGoatUser;
 import org.owasp.webgoat.container.plugins.LessonTest;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -19,8 +17,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @WithWebGoatUser
 class SimpleXXETest extends LessonTest {
-
-  @TempDir Path tempDir;
 
   @BeforeEach
   void setup() {
@@ -33,7 +29,9 @@ class SimpleXXETest extends LessonTest {
     mockMvc
         .perform(
             MockMvcRequestBuilders.post("/xxe/simple")
-                .content(XXETestPayload.readKnownFile(tempDir)))
+                .content(
+                    "<?xml version=\"1.0\" standalone=\"yes\" ?><!DOCTYPE user [<!ENTITY root"
+                        + " SYSTEM \"file:///\"> ]><comment><text>&root;</text></comment>"))
         .andExpect(status().isOk())
         .andExpect(
             jsonPath("$.feedback", CoreMatchers.is(messages.getMessage("assignment.solved"))));

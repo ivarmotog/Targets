@@ -5,6 +5,7 @@
 package org.owasp.webgoat.lessons.sqlinjection.advanced;
 
 import static org.owasp.webgoat.container.assignments.AttackResultBuilder.failed;
+import static org.owasp.webgoat.container.assignments.AttackResultBuilder.informationMessage;
 import static org.owasp.webgoat.container.assignments.AttackResultBuilder.success;
 
 import java.sql.Connection;
@@ -69,7 +70,8 @@ public class SqlInjectionChallenge implements AssignmentEndpoint {
           preparedStatement.setString(2, email);
           preparedStatement.setString(3, password);
           preparedStatement.execute();
-          attackResult = success(this).feedback("user.created").feedbackArgs(username).build();
+          attackResult =
+              informationMessage(this).feedback("user.created").feedbackArgs(username).build();
         }
       } catch (SQLException e) {
         attackResult = failed(this).output("Something went wrong").build();
