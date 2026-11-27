@@ -6,14 +6,27 @@
       "name": "OWASP WebGoat",
       "directory": "webgoat",
       "upstream": "https://github.com/WebGoat/WebGoat",
-      "release_tag": "v2026.5",
-      "upstream_commit": "7e198f39189f33e1912f7cbb60e24e42635ca06a",
-      "upstream_commit_time": "2026-10-12T08:38:02+02:00",
+      "release_tag": "v2026.4",
+      "upstream_commit": "872d6149d4ef29e4929c2f4eda279f7fbedc52e8",
+      "upstream_commit_time": "2026-09-14T20:19:45+02:00",
       "license": "GPL-2.0-or-later",
       "license_file": "webgoat/LICENSE.txt",
       "stack": ["java", "spring-boot", "maven", "container"],
       "imported_on": "2026-11-27",
-      "file_count": 1358
+      "file_count": 1241,
+      "binaries": [
+        {
+          "path": "webgoat/binary/webgoat-2026.4.jar",
+          "kind": "jar",
+          "source_url": "https://github.com/WebGoat/WebGoat/releases/download/v2026.4/webgoat-2026.4.jar",
+          "size": 160523398,
+          "sha256": "846dd1d60692558fcab42627e561db2dd22d49fed1eeac68b6cbea088bf13e00",
+          "storage": "git-lfs",
+          "implementation_version": "2026.4",
+          "runtime": "Java 25",
+          "verified_against_source": "783 of 785 packaged resources byte-identical to v2026.4 source; the 2 differences are Maven version filtering"
+        }
+      ]
     }
   ]
 }
