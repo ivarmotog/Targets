@@ -1,0 +1,19 @@
+{
+  "schema": "targets@1",
+  "targets": [
+    {
+      "id": "webgoat",
+      "name": "OWASP WebGoat",
+      "directory": "webgoat",
+      "upstream": "https://github.com/WebGoat/WebGoat",
+      "release_tag": "v2026.5",
+      "upstream_commit": "7e198f39189f33e1912f7cbb60e24e42635ca06a",
+      "upstream_commit_time": "2026-10-12T08:38:02+02:00",
+      "license": "GPL-2.0-or-later",
+      "license_file": "webgoat/LICENSE.txt",
+      "stack": ["java", "spring-boot", "maven", "container"],
+      "imported_on": "2026-11-27",
+      "file_count": 1358
+    }
+  ]
+}
